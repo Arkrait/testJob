@@ -4,7 +4,14 @@
   "description": "Basic rest api for an evm based smart contract",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "server": "node app.js",
+    "start": "concurrently --kill-others \"npm run server\" \"ganache-cli\" "
+  },
+  "homepage": "https://github.com/Arkrait/testJob",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arkrait/testJob"
   },
   "author": "Kirill Mironov",
   "license": "MIT",
@@ -14,6 +21,7 @@
     "web3": "^1.0.0-beta.36"
   },
   "devDependencies": {
+    "concurrently": "^4.0.1",
     "nodemon": "^1.18.5"
   }
 }
