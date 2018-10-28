@@ -1,4 +1,4 @@
-# Express-based REST API and a corresponding smart contract for car plates registration.
+# Express-based REST API and a corresponding smart contract to register cars.
 
 ## Installation
 
