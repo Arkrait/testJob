@@ -1,2 +1,6 @@
 # node_modules
 node_modules/
+
+# configuration file
+app/config.json
+dist/config.json

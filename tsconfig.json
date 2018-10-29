@@ -6,8 +6,13 @@
     "sourceMap": true,
     "target": "esnext",
     "outDir": "./dist",
-    "baseUrl": "./app"
+    "baseUrl": "./app",
+    "resolveJsonModule": true
   },
-  "include": ["app/**/*.ts", "app.js"],
+  "include": [
+    "app/**/*",
+    "app.js",
+    "ethereum/migrations/1_initial_migration.js"
+  ],
   "exclude": ["node_modules"]
 }
