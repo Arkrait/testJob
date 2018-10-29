@@ -1,4 +1,5 @@
 import * as express from "express";
+import { Request, Response } from "express";
 import Web3 = require("web3");
 import bodyParser = require("body-parser");
 import * as fs from "fs";
@@ -37,9 +38,36 @@ if (config.contractAddress === null || config.contractAddress === undefined) {
   });
 }
 
-app.get("/:address", (req: express.Request, res: express.Response) => {
-  let inputtedAddress: string = "0x" + req.params.address;
-  console.log(inputtedAddress);
+app.use(bodyParser);
+
+app.post("/register/:address", (req: Request, res: Response) => {
+  if (req.params.address[0] === "0" && req.params.address[1] === "x") {
+    res.send("Please provide the address without specifying the hex type.");
+    return;
+  }
+  let passedAddress = "0x" + req.params.address;
+  // validate address here
+  const contract = new web3.eth.Contract(abi, config.contractAddress);
+  const car: Car = {
+    plate: "myPlate",
+    description: {
+      brand: "BMW",
+      model: "X5",
+      ownerCredentials: "myPhone",
+      horsePower: 1223
+    }
+  };
+  contract.methods
+    .requestRegistration(
+      car.plate,
+      car.description.brand,
+      car.description.model,
+      car.description.ownerCredentials,
+      car.description.horsePower
+    )
+    .call({
+      from: passedAddress
+    });
 });
 
 app.listen(8080, "localhost");

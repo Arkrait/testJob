@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const Web3 = require("web3");
+const bodyParser = require("body-parser");
 const fs = require("fs");
 const contractJson = require("../ethereum/build/contracts/CarRegistration.json");
 let config = JSON.parse(fs.readFileSync("./config.json").toString());
@@ -32,9 +33,29 @@ if (config.contractAddress === null || config.contractAddress === undefined) {
         });
     });
 }
-app.get("/:address", (req, res) => {
-    let inputtedAddress = "0x" + req.params.address;
-    console.log(inputtedAddress);
+app.use(bodyParser);
+app.post("/register/:address", (req, res) => {
+    if (req.params.address[0] === "0" && req.params.address[1] === "x") {
+        res.send("Please provide the address without specifying the hex type.");
+        return;
+    }
+    let passedAddress = "0x" + req.params.address;
+    // validate address here
+    const contract = new web3.eth.Contract(abi, config.contractAddress);
+    const car = {
+        plate: "myPlate",
+        description: {
+            brand: "BMW",
+            model: "X5",
+            ownerCredentials: "myPhone",
+            horsePower: 1223
+        }
+    };
+    contract.methods
+        .requestRegistration(car.plate, car.description.brand, car.description.model, car.description.ownerCredentials, car.description.horsePower)
+        .call({
+        from: passedAddress
+    });
 });
 app.listen(8080, "localhost");
 //# sourceMappingURL=app.js.map

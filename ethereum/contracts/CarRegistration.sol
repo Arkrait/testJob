@@ -50,7 +50,7 @@ contract CarRegistration {
     string brand, 
     string model, 
     string ownerCredentials, 
-    uint horsePower) public payable 
+    uint horsePower) public
     {
     _requestedPlate = plate;
     _requestedDescription = CarDescription({
@@ -60,9 +60,4 @@ contract CarRegistration {
       horsePower: horsePower
     });
   }
-
-  /// @dev check if the request is following standards
-  /* function validateRequest() private {
-    
-  }*/
 }
