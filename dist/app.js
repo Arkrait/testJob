@@ -4,15 +4,14 @@ const express = require("express");
 const Web3 = require("web3");
 const fs = require("fs");
 const contractJson = require("../ethereum/build/contracts/CarRegistration.json");
-let config = require("./config.json");
+let config = JSON.parse(fs.readFileSync("./config.json").toString());
 const abi = contractJson.abi;
 const bc = contractJson.bytecode;
 const app = express();
 const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
 // deploy only one contract by saving its' address in a config file
-console.log(config["contractAddress"]);
-if (config["contractAddress"] === null ||
-    config["contractAddress"] === undefined) {
+console.log(config.contractAddress);
+if (config.contractAddress === null || config.contractAddress === undefined) {
     web3.eth.getAccounts().then(result => {
         const contract = new web3.eth.Contract(abi);
         contract
