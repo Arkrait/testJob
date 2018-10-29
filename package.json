@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Basic rest api for an evm based smart contract",
   "scripts": {
-    "dev": "ts-node copyStaticAssets.ts && tsc && npm run server",
+    "dev": "tsc && npm run server",
     "server": "nodemon ./dist/app.js",
     "start": "concurrently --kill-others \"npm run server\" \"ganache-cli\" "
   },
