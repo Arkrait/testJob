@@ -1,9 +1,9 @@
-interface Car {
+export interface Car {
   plate: string;
   description: CarDescription;
 }
 
-interface CarDescription {
+export interface CarDescription {
   brand: string;
   model: string;
   ownerCredentials: string;
