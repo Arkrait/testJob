@@ -24,7 +24,7 @@ contract CarRegistration {
   address public registrar;
 
   // all registered cars of a person
-  mapping(address=>Car[]) private _registeredCars;
+  mapping(address=>Car[]) public registeredCars;
 
   constructor() public {
     registrar = msg.sender;
@@ -32,7 +32,7 @@ contract CarRegistration {
 
   function registerCar(address owner) public {
     require(msg.sender == registrar, "Only registrar can register vehicles");
-    _registeredCars[owner].push(Car({
+    registeredCars[owner].push(Car({
       plate: _requestedPlate,
       description: _requestedDescription
     }));
