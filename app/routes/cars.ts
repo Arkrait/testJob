@@ -15,10 +15,9 @@ router.get("/cars/:address/:id", (req: Request, res: Response) => {
     contract.methods
       // get the registered car by id, for example /cars/*address*/1 returns [0] of array
       .getCarByIndex(passedAddress, id)
+      // _call_ instead of _send_ because getCarByIndex is a funcrview
       .call({
-        from: passedAddress,
-        gas: 4712388,
-        gasPrice: 100000000000
+        from: passedAddress
       })
       .then(result => res.send(result));
   });

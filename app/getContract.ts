@@ -2,10 +2,16 @@ import Contract from "web3/eth/contract";
 import web3 from "./web3instance";
 import * as fs from "fs";
 
+// wrapper around the promises that returns a contract
 const getContract = function() {
   return web3.eth.getAccounts().then(result => {
+    /*
+    * This whole thing should be probably refactored because right now you have
+    * to drop the server once the contract gets deployed (only once though)
+    */
     let registrarAccount: string;
     let contract: Contract;
+    // should not be in prod!
     registrarAccount = result[0];
     const contractJson = require("../ethereum/build/contracts/CarRegistration.json");
     let config = JSON.parse(fs.readFileSync("./config.json").toString());
@@ -37,6 +43,8 @@ const getContract = function() {
     }
 
     contract = new web3.eth.Contract(abi, config.contractAddress);
+
+    // return the instance of our freshly deployed contract in a promise
     return contract;
   });
 };

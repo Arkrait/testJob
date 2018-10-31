@@ -11,6 +11,7 @@ router.use(carsRouter);
 let registrarAccount: string;
 web3.eth.getAccounts().then(result => (registrarAccount = result[0]));
 
+// This endpoint should be restricted to admins of a service
 router.post("/register/:address", (req: Request, res: Response) => {
   if (req.params.address[0] === "0" && req.params.address[1] === "x") {
     res.send("Please provide the address without specifying the hex type.");
@@ -32,6 +33,10 @@ router.post("/register/:address", (req: Request, res: Response) => {
   });
 });
 
+/* I am thinking about ways to change this endpoint so that users don't have to paste their private key 
+* in a request but this will probably require the clien to have MetaMask installed for ease of 
+* authentication
+*/
 router.post("/register/request/:privateKey", (req: Request, res: Response) => {
   if (req.params.privateKey[0] === "0" && req.params.privateKey[1] === "x") {
     res.send("Please provide the private key without specifying the hex type.");

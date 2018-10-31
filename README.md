@@ -11,3 +11,9 @@
 - npm start
 
 Now you can add accounts to Metamask via private codes supplied by ganache.
+
+### Keypoints
+
+- /api/register/:address should be restricted to admins
+- probably need to refactor the requestRegistration function to be _payable_
+- later on the whole API can be reformatted to use raw transactions for the ease-of-use from the MetaMask client
