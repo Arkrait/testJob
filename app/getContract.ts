@@ -33,7 +33,6 @@ const getContract = function() {
         .then(contract => {
           config.contractAddress = contract.options.address;
           fs.writeFileSync("./config.json", JSON.stringify(config));
-          console.log(contract.options.address);
         });
     }
 

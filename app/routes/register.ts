@@ -41,7 +41,6 @@ router.post("/register/request/:privateKey", (req: Request, res: Response) => {
     "0x" + req.params.privateKey
   );
 
-  console.log(req.body);
   const car: Car = {
     plate: req.body.plate,
     description: {
@@ -65,7 +64,7 @@ router.post("/register/request/:privateKey", (req: Request, res: Response) => {
         gas: 4712388,
         gasPrice: 100000000000
       })
-      .then(result => console.log(result))
+      .then(result => res.send(result))
       .catch(err => console.log(err));
   });
 });

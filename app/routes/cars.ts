@@ -12,8 +12,6 @@ router.get("/cars/:address/:id", (req: Request, res: Response) => {
   const passedAddress: string = "0x" + req.params.address;
   const id: number = req.params.id - 1;
   getContract().then(contract => {
-    console.log(contract.options.address);
-    console.log(passedAddress);
     contract.methods
       // get the registered car by id, for example /cars/*address*/1 returns [0] of array
       .getCarByIndex(passedAddress, id)
