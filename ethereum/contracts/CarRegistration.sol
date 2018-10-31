@@ -24,7 +24,7 @@ contract CarRegistration {
   address public registrar;
 
   // all registered cars of a person
-  mapping(address=>Car[]) public registeredCars;
+  mapping(address=>Car[]) private _registeredCars;
 
   constructor() public {
     registrar = msg.sender;
@@ -32,7 +32,7 @@ contract CarRegistration {
 
   function registerCar(address owner) public {
     require(msg.sender == registrar, "Only registrar can register vehicles");
-    registeredCars[owner].push(Car({
+    _registeredCars[owner].push(Car({
       plate: _requestedPlate,
       description: _requestedDescription
     }));
@@ -59,5 +59,19 @@ contract CarRegistration {
       ownerCredentials: ownerCredentials,
       horsePower: horsePower
     });
+  }
+
+  function getCarByIndex(address owner, uint index) view public returns (
+    string plate,
+    string brand,
+    string model,
+    string ownerCredentials,
+    uint horsePower
+  ) {
+    plate = _registeredCars[owner][index].plate;
+    brand = _registeredCars[owner][index].description.brand;
+    model = _registeredCars[owner][index].description.model;
+    ownerCredentials = _registeredCars[owner][index].description.ownerCredentials;
+    horsePower = _registeredCars[owner][index].description.horsePower;
   }
 }
