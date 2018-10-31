@@ -10,8 +10,6 @@
 - npm install
 - npm start
 
-Now you can add accounts to Metamask via private codes supplied by ganache.
-
 ### Keypoints
 
 - /api/register/:address should be restricted to admins
