@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Basic rest api for an evm based smart contract",
   "scripts": {
-    "dev": "webpack --config webpack.config.js && npm run server",
+    "dev": "npm run build && npm run server",
+    "build": "webpack --config webpack.config.js",
     "server": "nodemon ./dist/bundle.js",
     "start": "concurrently --kill-others \"npm run server\" \"ganache-cli\" "
   },
