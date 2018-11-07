@@ -4,13 +4,32 @@
 * this server to handle signing by itself.
 */
 
-import * as express from "express";
+import * as boot from "loopback-boot";
+import * as loopback from "loopback";
 import bodyParser = require("body-parser");
-import { Router, Request, Response } from "express";
 import router from "./routes";
 
-const app = express();
+const app = loopback();
+
 app.use(bodyParser.json());
 app.use("/api", router);
 
-app.listen(8080, "localhost");
+app.start = function() {
+  return app.listen(function() {
+    app.emit("started");
+    const baseUrl = app.get("url").replace(/\/$/, "");
+    console.log("started at %s", baseUrl);
+    if (app.get("loopback-component-explorer")) {
+      var explorerPath = app.get("loopback-component-explorer").mountPath;
+      console.log("Browse your REST API at %s%s", baseUrl, explorerPath);
+    }
+  });
+};
+
+boot(app, __dirname, function(err) {
+  if (err) throw err;
+
+  if (require.main === module) {
+    app.start();
+  }
+});
