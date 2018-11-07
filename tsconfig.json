@@ -15,5 +15,5 @@
     "app.js",
     "ethereum/migrations/1_initial_migration.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "app/test"]
 }

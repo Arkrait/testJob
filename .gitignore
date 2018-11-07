@@ -3,3 +3,6 @@ node_modules/
 
 # configuration file
 app/config.json
+
+# dist
+dist/

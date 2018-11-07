@@ -8,11 +8,15 @@ import * as boot from "loopback-boot";
 import * as loopback from "loopback";
 import bodyParser = require("body-parser");
 import router from "./routes";
+const explorer = require("loopback-component-explorer");
 
 const app = loopback();
 
+explorer(app, { basePath: "/api", mountPath: "/explorer" });
+
 app.use(bodyParser.json());
 app.use("/api", router);
+app.use("/explorer", explorer.routes(app, { basePath: "/api" }));
 
 app.start = function() {
   return app.listen(function() {
