@@ -6,15 +6,15 @@ import * as fs from "fs";
 const getContract = function() {
   return web3.eth.getAccounts().then(result => {
     /*
-    * This whole thing should be probably refactored because right now you have
-    * to drop the server once the contract gets deployed (only once though)
-    */
+     * This whole thing should be probably refactored because right now you have
+     * to drop the server once the contract gets deployed (only once though)
+     */
     let registrarAccount: string;
     let contract: Contract;
     // should not be in prod!
     registrarAccount = result[0];
     const contractJson = require("../ethereum/build/contracts/CarRegistration.json");
-    let config = JSON.parse(fs.readFileSync("./config.json").toString());
+    let config = JSON.parse(fs.readFileSync("./ethConfig.json").toString());
 
     const abi = contractJson.abi;
     const bc = contractJson.bytecode;
@@ -38,7 +38,7 @@ const getContract = function() {
         })
         .then(contract => {
           config.contractAddress = contract.options.address;
-          fs.writeFileSync("./config.json", JSON.stringify(config));
+          fs.writeFileSync("./ethConfig.json", JSON.stringify(config));
         });
     }
 
