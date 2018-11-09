@@ -34,7 +34,7 @@
     "greet": {
       "accepts": { "arg": "msg", "type": "string" },
       "returns": { "arg": "greeting", "type": "string" },
-      "http": { "verb": "get", "path": "/greet" }
+      "http": { "verb": "get", "path": "/:msg/greet/greet" }
     }
   }
 }
