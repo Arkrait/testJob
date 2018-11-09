@@ -2,7 +2,6 @@ import { Router, Request, Response } from "express";
 import web3 from "../web3instance";
 import carsRouter from "./cars";
 import getContract from "../getContract";
-import { Car } from "../Car.model";
 
 const router = Router();
 

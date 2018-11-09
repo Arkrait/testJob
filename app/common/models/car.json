@@ -39,6 +39,14 @@
       ],
       "returns": { "arg": "greeting", "type": "string" },
       "http": { "verb": "post", "path": "/:id/requestRegister/:privateKey" }
+    },
+    "test": {
+      "accepts": { "arg": "anything", "type": "string" },
+      "returns": { "arg": "return", "type": "string" },
+      "http": {
+        "verb": "get",
+        "path": "/test"
+      }
     }
   }
 }
