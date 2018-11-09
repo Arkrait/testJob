@@ -31,10 +31,14 @@
   "relations": {},
   "acls": [],
   "methods": {
-    "greet": {
-      "accepts": { "arg": "msg", "type": "string" },
+    "requestRegister": {
+      "accepts": [
+        { "arg": "id", "type": "string" },
+        { "arg": "privateKey", "type": "string" },
+        { "arg": "options", "type": "object" }
+      ],
       "returns": { "arg": "greeting", "type": "string" },
-      "http": { "verb": "get", "path": "/:msg/greet/greet" }
+      "http": { "verb": "post", "path": "/:id/requestRegister/:privateKey" }
     }
   }
 }

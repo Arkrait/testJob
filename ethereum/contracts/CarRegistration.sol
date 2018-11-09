@@ -18,7 +18,9 @@ contract CarRegistration {
   string private _requestedPlate;
   CarDescription private _requestedDescription;
 
-  event CarRegistered(address owner, string plate, string brand, string model, string ownerCredentials);
+  event CarRegistered(
+    address owner, string plate, string brand, string model, string ownerCredentials, uint horsePower
+  );
 
   // address of the person that allows registration
   address public registrar;
@@ -41,7 +43,8 @@ contract CarRegistration {
       _requestedPlate, 
       _requestedDescription.brand, 
       _requestedDescription.model, 
-      _requestedDescription.ownerCredentials
+      _requestedDescription.ownerCredentials,
+      _requestedDescription.horsePower
     );
   }
 

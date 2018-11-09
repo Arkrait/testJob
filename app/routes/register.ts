@@ -33,45 +33,4 @@ router.post("/register/:address", (req: Request, res: Response) => {
   });
 });
 
-/* I am thinking about ways to change this endpoint so that users don't have to paste their private key 
-* in a request but this will probably require the clien to have MetaMask installed for ease of 
-* authentication
-*/
-router.post("/register/request/:privateKey", (req: Request, res: Response) => {
-  if (req.params.privateKey[0] === "0" && req.params.privateKey[1] === "x") {
-    res.send("Please provide the private key without specifying the hex type.");
-    return;
-  }
-  const account = web3.eth.accounts.privateKeyToAccount(
-    "0x" + req.params.privateKey
-  );
-
-  const car: Car = {
-    plate: req.body.plate,
-    description: {
-      brand: req.body.description.brand,
-      model: req.body.description.model,
-      ownerCredentials: req.body.description.ownerCredentials,
-      horsePower: req.body.description.horsePower
-    }
-  };
-  getContract().then(contract => {
-    contract.methods
-      .requestRegistration(
-        car.plate,
-        car.description.brand,
-        car.description.model,
-        car.description.ownerCredentials,
-        car.description.horsePower
-      )
-      .send({
-        from: account.address,
-        gas: 4712388,
-        gasPrice: 100000000000
-      })
-      .then(result => res.send(result))
-      .catch(err => console.log(err));
-  });
-});
-
 export default router;
