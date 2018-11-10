@@ -1,24 +1,22 @@
 import { CarModel } from "./../../Car.model";
 import web3 from "../../web3instance";
 import getContract from "../../getContract";
-import { PersistedModel } from "loopback";
 
-module.exports = function(Car: PersistedModel) {
+module.exports = function(Car: CarModel) {
   /* I am thinking about ways to change this endpoint so that users don't have to paste their private key
    * in a request but this will probably require the clien to have MetaMask installed for ease of
    * authentication
    */
-  Car.register = async function(
+  /*Car.register = async function(
     id: string,
     privateKey: string
   ): Promise<string | any> {
-    /*
     if (privateKey[0] === "0" && privateKey[1] === "x") {
       return "Please provide the private key without specifying the hex type.";
     }
     const account = web3.eth.accounts.privateKeyToAccount("0x" + privateKey);
 
-    const car: CarModel = {
+    const car = {
       plate: body.plate,
       brand: body.brand,
       model: body.model,
@@ -42,11 +40,11 @@ module.exports = function(Car: PersistedModel) {
         gasPrice: 100000000000
       });
 
-    return result;*/
+    return result;
   };
 
   Car.test = async function(anything) {
-    console.log(anything);
+    Car.
     return this.findById(anything).brand;
-  };
+  };*/
 };
