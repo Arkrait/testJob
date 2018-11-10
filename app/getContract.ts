@@ -14,7 +14,9 @@ const getContract = function() {
     // should not be in prod!
     registrarAccount = result[0];
     const contractJson = require("../ethereum/build/contracts/CarRegistration.json");
-    let config = JSON.parse(fs.readFileSync("./ethConfig.json").toString());
+    const config = JSON.parse(
+      fs.readFileSync(__dirname + "/ethConfig.json").toString()
+    );
 
     const abi = contractJson.abi;
     const bc = contractJson.bytecode;
@@ -38,7 +40,10 @@ const getContract = function() {
         })
         .then(contract => {
           config.contractAddress = contract.options.address;
-          fs.writeFileSync("./ethConfig.json", JSON.stringify(config));
+          fs.writeFileSync(
+            __dirname + "/ethConfig.json",
+            JSON.stringify(config)
+          );
         });
     }
 

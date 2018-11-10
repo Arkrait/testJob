@@ -12,6 +12,7 @@ contract CarRegistration {
     string brand;
     string model;
     string ownerCredentials;
+    string ownerAddress;
     uint horsePower;
   }
 
@@ -19,7 +20,13 @@ contract CarRegistration {
   CarDescription private _requestedDescription;
 
   event CarRegistered(
-    address owner, string plate, string brand, string model, string ownerCredentials, uint horsePower
+    address owner,
+    string plate,
+    string brand,
+    string model,
+    string ownerCredentials,
+    string ownerAddress,
+    uint horsePower
   );
 
   // address of the person that allows registration
@@ -44,6 +51,7 @@ contract CarRegistration {
       _requestedDescription.brand, 
       _requestedDescription.model, 
       _requestedDescription.ownerCredentials,
+      _requestedDescription.ownerAddress,
       _requestedDescription.horsePower
     );
   }
@@ -52,7 +60,8 @@ contract CarRegistration {
     string plate, 
     string brand, 
     string model, 
-    string ownerCredentials, 
+    string ownerCredentials,
+    string ownerAddress,
     uint horsePower) public
     {
     _requestedPlate = plate;
@@ -60,6 +69,7 @@ contract CarRegistration {
       brand: brand,
       model: model,
       ownerCredentials: ownerCredentials,
+      ownerAddress: ownerAddress,
       horsePower: horsePower
     });
   }
@@ -69,12 +79,14 @@ contract CarRegistration {
     string brand,
     string model,
     string ownerCredentials,
+    string ownerAddress,
     uint horsePower
   ) {
     plate = _registeredCars[owner][index].plate;
     brand = _registeredCars[owner][index].description.brand;
     model = _registeredCars[owner][index].description.model;
     ownerCredentials = _registeredCars[owner][index].description.ownerCredentials;
+    ownerAddress = _registeredCars[owner][index].description.ownerAddress;
     horsePower = _registeredCars[owner][index].description.horsePower;
   }
 }

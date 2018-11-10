@@ -34,11 +34,23 @@
     "requestRegister": {
       "accepts": [
         { "arg": "id", "type": "string" },
-        { "arg": "privateKey", "type": "string" },
-        { "arg": "options", "type": "object" }
+        { "arg": "privateKey", "type": "string" }
       ],
-      "returns": { "arg": "greeting", "type": "string" },
+      "returns": { "arg": "ethResponse", "type": "object" },
       "http": { "verb": "post", "path": "/:id/requestRegister/:privateKey" }
+    },
+    "registerCar": {
+      "accepts": { "arg": "address", "type": "string" },
+      "returns": { "arg": "ethResponse", "type": "string" },
+      "http": { "verb": "post", "path": "/register/:address" }
+    },
+    "getCarsFromAddress": {
+      "accepts": [
+        { "arg": "address", "type": "string" },
+        { "arg": "index", "type": "number" }
+      ],
+      "returns": { "arg": "cars", "type": "array" },
+      "http": { "verb": "get", "path": "/:address/:index" }
     },
     "test": {
       "accepts": { "arg": "anything", "type": "string" },
