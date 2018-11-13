@@ -8,6 +8,8 @@
 - git clone https://github.com/Arkrait/testJob.git
 - cd testJob
 - npm install
+- npm run build
+- npm run test
 - npm start
 
 _NOTE_ **the first request will not go through if the contract is not yet deployed**
