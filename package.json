@@ -7,7 +7,7 @@
     "build": "tsc --build tsconfig.json && copyfiles --flat app/common/models/*.json dist/common/models && copyfiles --flat app/*.json dist",
     "server": "nodemon ./dist/app.js",
     "start": "concurrently --kill-others \"ganache-cli -u 0 -d\" \"npm run server\" ",
-    "test": "concurrently --kill-others \"ganache-cli -u 0 -d\" \"mocha --timeout 15000 --require ts-node/register app/**/*.spec.ts\" "
+    "test": "mocha --timeout 15000 --require ts-node/register app/**/*.spec.ts --exit"
   },
   "homepage": "https://github.com/Arkrait/testJob",
   "repository": {

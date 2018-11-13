@@ -18,7 +18,7 @@ describe("car model", function() {
       .end(done);
   });
   it("returns correct eth response when given id and private key", function(done) {
-    this.timeout(5000);
+    this.timeout(10000);
 
     setTimeout(function() {
       request(app)
@@ -31,6 +31,6 @@ describe("car model", function() {
             res.body.ethResponse.transactionHash !== undefined;
         })
         .end(done);
-    }, 2500);
+    }, 5000);
   });
 });
