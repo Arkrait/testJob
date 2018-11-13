@@ -1,5 +1,7 @@
 # Express-based REST API and a corresponding smart contract to register cars.
 
+[![Build Status](https://travis-ci.com/Arkrait/testJob.svg?branch=tests)](https://travis-ci.com/Arkrait/testJob)
+
 ## Installation
 
 - Make sure you have npm and node installed
