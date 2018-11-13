@@ -35,3 +35,5 @@ boot(app, __dirname, function(err) {
     app.start();
   }
 });
+
+export { app };
