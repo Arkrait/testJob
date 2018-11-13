@@ -10,10 +10,6 @@
     "resolveJsonModule": true,
     "types": ["node"]
   },
-  "include": [
-    "app/**/*",
-    "app.js",
-    "ethereum/migrations/1_initial_migration.js"
-  ],
-  "exclude": ["node_modules", "app/test"]
+  "include": ["app/**/*", "app.js"],
+  "exclude": ["node_modules", "app/**/*.spec.ts"]
 }
