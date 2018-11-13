@@ -3,4 +3,4 @@ node_js:
   - "node"
 before_install:
   - npm i -g ganache-cli
-  - ganache-cli -u 0 -d
+  - ganache-cli -u 0 -d &
