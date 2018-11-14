@@ -52,24 +52,25 @@ module.exports = function(Car: typeof CarModel) {
 
   Car.registerCar = function(address: string, cb: CallbackWithResult<any>) {
     let registrarAccount: string;
-    web3.eth.getAccounts().then(result => (registrarAccount = result[0]));
-
-    if (address[0] === "0" && address[1] === "x") {
-      cb(null, "Please provide the address without specifying the hex type.");
-      return;
-    }
-    contract.events.CarRegistered({}, (err, result) => {
-      console.log(result);
+    web3.eth.getAccounts().then(result => {
+      registrarAccount = result[0];
+      if (address[0] === "0" && address[1] === "x") {
+        cb(null, "Please provide the address without specifying the hex type.");
+        return;
+      }
+      contract.events.CarRegistered({}, (err, result) => {
+        console.log(result);
+      });
+      contract.methods
+        .registerCar("0x" + address)
+        .send({
+          from: registrarAccount,
+          gas: 4712388,
+          gasPrice: 100000000000
+        })
+        .then(res => cb(null, res))
+        .catch(err => cb(err, null));
     });
-    contract.methods
-      .registerCar("0x" + address)
-      .send({
-        from: registrarAccount,
-        gas: 4712388,
-        gasPrice: 100000000000
-      })
-      .then(res => cb(null, res))
-      .catch(err => cb(err, null));
   };
 
   Car.getCarsFromAddress = function(

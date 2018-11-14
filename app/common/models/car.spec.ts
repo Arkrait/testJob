@@ -33,4 +33,24 @@ describe("car model", function() {
         .end(done);
     }, 5000);
   });
+  it("registers a car when approved by administrator", function(done) {
+    request(app)
+      .post("/api/Cars/register/ffcf8fdee72ac11b5c542428b35eef5769c409f0")
+      .expect(200)
+      .expect(res => {
+        res.body.ethResponse.transactionHash !== null ||
+          res.body.ethResponse.transactionHash !== undefined;
+      })
+      .end(done);
+  });
+  it("returns registered car after approving the registration", function(done) {
+    request(app)
+      .get("/api/Cars/ffcf8fdee72ac11b5c542428b35eef5769c409f0/1")
+      .expect(200)
+      .expect(res => {
+        res.body.cars.horsePower !== null ||
+          res.body.cars.horsePower !== undefined;
+      })
+      .end(done);
+  });
 });
