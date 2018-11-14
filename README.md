@@ -14,9 +14,6 @@
 - npm run test _**MAKE SURE YOU HAVE GANACHE RUNNING BEFORE RUNNING TESTS (ganache-cli -u 0 -d)**_
 - npm start
 
-_NOTE_ **the first request will not go through if the contract is not yet deployed**
-This is not a problem in production because the contract is already deployed in such cases, to the extent of my knowledge
-
 ### Keypoints
 
 - /api/register/:address should be restricted to admins
